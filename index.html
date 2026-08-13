@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pensi - Gaya Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            color: #ffffff;
+            overflow-x: hidden;
+            background-color: #1a0d00;
+        }
+
+        /* Overlay Pembuka (Cover Depan) */
+        #opening-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Posisi tegak lurus di tengah */
+            align-items: center; /* Posisi mendatar di tengah */
+            padding: 20px;
+            text-align: center;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+            /* Memanggil gambar */
+            background-image: url('https://z-cdn-media.chatglm.cn/files/0abd4ac0-8db3-44a9-ab36-89c6a43d46bb.png?auth_key=1886614467-5d3d773ab5e2480d8d153ae61176abb7-0-5fe60adc17e2f02180afd1fc247aa3c8');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Gradasi Gelap Radial (hanya di tengah agar teks jelas, pinggir tetap terlihat) */
+        #opening-overlay::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0) 70%);
+            z-index: 1;
+        }
+        
+        #opening-overlay > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        #opening-overlay.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .overlay-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: #FFD700;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.9), 0 0 5px rgba(0,0,0,0.8);
+        }
+        .overlay-subtitle {
+            font-size: 0.9rem;
+            color: #ffffff;
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+            font-weight: 600;
+            text-shadow: 0 2px 8px rgba(0,0,0,1);
+        }
+        .btn-open {
+            background: linear-gradient(to right, #d4af37, #fff5d4, #d4af37);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #4a3000;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.6);
+            transition: transform 0.3s;
+            animation: pulse 2.5s infinite;
+        }
+        .btn-open:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { box-shadow: 0 0 0 25px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        /* Konten Utama Setelah Dibuka */
+        #main-content {
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        #main-content.show {
+            opacity: 1;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Section Hero (Cover Setelah Dibuka) */
+        #hero {
+            background-image: url('https://z-cdn-media.chatglm.cn/files/0abd4ac0-8db3-44a9-ab36-89c6a43d46bb.png?auth_key=1886614467-5d3d773ab5e2480d8d153ae61176abb7-0-5fe60adc17e2f02180afd1fc247aa3c8');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        /* Overlay gelap di section hero */
+        #hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(20,10,0,0.65) 0%, rgba(20,10,0,0.85) 100%);
+            z-index: 1;
+        }
+        #hero > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: #FFD700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,1);
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,1);
+        }
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            max-width: 600px;
+        }
+
+        /* Animasi Scroll Fade */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tombol Aksi */
+        .btn-action {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: rgba(212, 175, 55, 0.15);
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-action:hover {
+            background-color: #FFD700;
+            color: #4a3000;
+            box-shadow: 0 0 15px #FFD700;
+        }
+
+        /* Kotak Transparan (Glassmorphism) */
+        .highlight-box {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            backdrop-filter: blur(8px);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        .ticket-tier {
+            text-align: left;
+            margin: 10px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 10px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            animation: bounce 2s infinite;
+            color: #FFD700;
+            z-index: 3;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-10px);}
+            60% {transform: translateX(-50%) translateY(-5px);}
+        }
+
+        #hero .tagline {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        /* Section selain Hero memakai background gelat statis */
+        .default-bg {
+            background-color: #140a00;
+            background-image: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Overlay Tombol Buka (Cover Depan) -->
+    <div id="opening-overlay">
+        <div class="overlay-title">PENTAS SENI<br>GAYA INDONESIA</div>
+        <div class="overlay-subtitle">KREATIF · BERBUDAYA · BERPRESTASI</div>
+        <button class="btn-open" onclick="bukaUndangan()">Buka Undangan ✨</button>
+    </div>
+
+    <!-- Konten Setelah Tombol Diklik -->
+    <div id="main-content">
+        
+        <!-- Section 1: Hero (Cover Setelah Dibuka) -->
+        <section id="hero">
+            <div class="fade-in visible">
+                <div class="tagline">Selamat Datang Di Festival Tahunan Kami</div>
+                <h1>GET READY TO EXPERIENCE THE BIGGEST ART FESTIVAL!</h1>
+                
+                <div class="highlight-box" style="max-width: 350px;">
+                    <p style="margin-bottom: 0;">Udah kangen nonton konser bareng temen-temen sekolah? Penat sama tugas dan pengen healing sambil nyanyi bareng?</p>
+                </div>
+            </div>
+            <div class="scroll-indicator">⬇️</div>
+        </section>
+
+        <!-- Section 2: Apa Saja Yang Ada -->
+        <section class="default-bg">
+            <div class="fade-in">
+                <h2>What to Expect?</h2>
+                <p>Gak cuma sekadar pensi biasa, di sini kamu bakal nemuin:</p>
+                
+                <div class="highlight-box">
+                    <p style="margin-bottom: 10px;">🌟 <b>Special Guest Star:</b> Band/Penyanyi Terkenal</p>
+                    <p style="margin-bottom: 10px;">🎸 <b>Local & School Band:</b> Penampilan keren antar sekolah!</p>
+                    <p style="margin-bottom: 10px;">💃 <b>Dance Showcase:</b> Modern & Traditional Dance</p>
+                    <p style="margin-bottom: 10px;">🎨 <b>Art Exhibition:</b> Interactive Photo Booth estetik!</p>
+                    <p style="margin-bottom: 0;">🍔 <b>Culinary & Market Bazaar:</b> Jajanan hits!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Tanggal, Waktu & Lokasi -->
+        <section class="default-bg">
+            <div class="fade-in">
+                <h2>Mark Your Calendar!</h2>
+                <div class="highlight-box" style="text-align: left;">
+                    <p style="font-size: 1.1rem; color: #FFD700; margin-bottom: 5px;">📅 <b>Hari/Tanggal:</b></p>
+                    <p style="margin-left: 25px;">Sabtu, 15 November 2026</p>
+                    
+                    <p style="font-size: 1.1rem; color: #FFD700; margin-bottom: 5px; margin-top: 15px;">⏰ <b>Waktu:</b></p>
+                    <p style="margin-left: 25px;">Open Gate: 15.00 WITA - Selesai</p>
+                    
+                    <p style="font-size: 1.1rem; color: #FFD700; margin-bottom: 5px; margin-top: 15px;">📍 <b>Lokasi:</b></p>
+                    <p style="margin-left: 25px;">Lapangan Utama SMA Negeri X<br>Jl. Pendidikan No. 123, Kota Pelajar</p>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Lapangan+Utama+SMA+Negeri+X+Kota+Pelajar" target="_blank" class="btn-action">📍 Buka di Google Maps</a>
+            </div>
+        </section>
+
+        <!-- Section 4: Tiket -->
+        <section class="default-bg">
+            <div class="fade-in">
+                <h2>🎟️ Get Your Tickets!</h2>
+                <p>Amankan tiket kamu sekarang sebelum kehabisan!</p>
+                
+                <div class="ticket-tier">
+                    <p style="color: #FFD700; font-weight: 800;">Presale 1: Rp 50.000</p>
+                    <p style="font-size: 0.8rem; margin: 0;">(LIMITED!)</p>
+                </div>
+                <div class="ticket-tier">
+                    <p style="color: #fff; font-weight: 800;">Presale 2: Rp 75.000</p>
+                </div>
+                <div class="ticket-tier">
+                    <p style="color: #ccc; font-weight: 800;">OTS (On The Spot): Rp 100.000</p>
+                </div>
+
+                <a href="https://forms.gel/contohlinktiket" target="_blank" class="btn-action">Beli Tiket Sekarang 👉</a>
+            </div>
+        </section>
+
+        <!-- Section 5: Penutup & Kontak -->
+        <section class="default-bg">
+            <div class="fade-in">
+                <h2>See You On Stage! 🔥</h2>
+                <p>Ajak satu geng kamu, kita seru-seruan dan nyanyi bareng di panggung seni kami!</p>
+                <div class="highlight-box">
+                    <p style="margin-bottom: 5px;">📱 CP Tiket: <a href="https://wa.me/6281234567890" style="color:#FFD700; text-decoration: none;">0812-3456-7890</a></p>
+                    <p style="margin-bottom: 0;">📸 IG: <a href="https://instagram.com/artstation2026" style="color:#FFD700; text-decoration: none;">@artstation2026</a></p>
+                </div>
+                <p style="font-size: 0.8rem; color: #aaa; margin-top: 30px;">#PentasSeni #GayaIndonesia #KreatifBerbudaya #InfoPensi #KonserPelajar</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Fungsi Tombol Buka Undangan
+        function bukaUndangan() {
+            document.getElementById('opening-overlay').classList.add('hide');
+            document.getElementById('main-content').classList.add('show');
+            
+            // Menjalankan animasi fade untuk konten pertama
+            setTimeout(() => {
+                const firstFade = document.querySelector('.fade-in');
+                if(firstFade) firstFade.classList.add('visible');
+            }, 500);
+        }
+
+        // Fungsi Animasi Scroll ke Bawah (Intersection Observer)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.2 // Animasi jalan saat 20% elemen terlihat di layar
+        });
+
+        const fadeElements = document.querySelectorAll('.fade-in');
+        fadeElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -8,8 +8,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Undangan Event Spesial!">
 <meta property="og:description" content="Kamu diundang untuk merayakan momen acara/event bersama kami!">
-<meta property="og:image" content="https://hamzanifina3-ops.github.io/undangan_event_festivalseni/Fensi.png">
-<meta property="og:image:secure_url" content="https://hamzanifina3-ops.github.io/undangan_event_festivalseni/Fensi.png">
+<meta property="og:image" content="https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/olahraga.jpg">
+<meta property="og:image:secure_url" content="https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/olahraga.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Undangan Event Spesial!">
 <meta name="twitter:description" content="Kamu diundang untuk merayakan momen acara/event bersama kami!">
-<meta name="twitter:image" content="https://hamzanifina3-ops.github.io/undangan_event_festivalseni/Fensi.png">
+<meta name="twitter:image" content="https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/olahraga.jpg">
 
 <title>UndanganEvent — Admin Panel</title>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -27,17 +27,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   :root {
-    --bg: #F4F8FB;          /* Biru pastel sangat muda */
+    --bg: #F4F8FB;          
     --surface: #FFFFFF;
-    --ink: #334155;         /* Teks utama biru keabu-abuan */
+    --ink: #334155;         
     --ink-soft: #475569;
     --muted: #94A3B8;
-    --line: #E2E8F0;        /* Garis biru-abu muda */
+    --line: #E2E8F0;        
     --line-soft: #F1F5F9;
-    --accent: #60A5FA;      /* Biru pastel utama */
-    --accent-dark: #3B82F6; /* Biru lebih tegas untuk hover/kontras */
-    --accent-soft: #EFF6FF; /* Background biru lembut */
-    --success: #38BDF8;     /* Cyan/Biru langit untuk status sukses */
+    --accent: #60A5FA;      
+    --accent-dark: #3B82F6; 
+    --accent-soft: #EFF6FF; 
+    --success: #38BDF8;     
     --success-dark: #0EA5E9;
     --danger: #F87171;
   }
@@ -224,7 +224,6 @@
             <i class="fa-solid fa-calendar-check w-4 text-center"></i>
             <span>Detail & Ucapan</span>
           </div>
-          <!-- PERBAIKAN TAG <i> SEBELUMNYA -->
           <div class="nav-item" data-tab="tamu">
             <i class="fa-regular fa-address-book w-4 text-center"></i>
             <span>Daftar Tamu</span>
@@ -248,7 +247,6 @@
     
     <!-- MAIN CONTENT -->
     <main class="main-content flex-1 overflow-x-hidden min-w-0">
-      <!-- Topbar -->
       <header class="border-b border-[var(--line)] bg-[var(--surface)]/85 backdrop-blur-md px-6 lg:px-10 py-5 flex items-center justify-between sticky top-0 z-30 gap-4">
         <div class="flex items-center gap-3 min-w-0">
           <button class="mobile-menu-btn hidden w-9 h-9 rounded-lg border border-[var(--line)] items-center justify-center text-[var(--ink)]" onclick="toggleSidebar()">
@@ -387,14 +385,13 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
               </div>
             </div>
             
-            <!-- TABEL TAMU YANG SUDAH DIPERBAIKI DAN DIRAPIKAN -->
             <div class="card overflow-hidden">
               <div class="p-6 border-b border-[var(--line)] flex items-center justify-between gap-4 flex-wrap">
                 <h2 class="font-display text-lg font-semibold leading-tight text-[var(--ink)]">Daftar Tamu Undangan</h2>
                 <div class="flex gap-2 w-full sm:w-auto">
                   <div class="relative flex-1 sm:w-72">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)] text-xs"></i>
-                    <input type="text" id="searchGuest" class="field-input pl-9" placeholder="Cari nama tamu..." />
+                    <input type="text" id="searchGuest" class="field-input pl-9" placeholder="Cari nama tamu..." oninput="renderGuests()" />
                   </div>
                   <button class="btn-ghost btn-icon" onclick="exportCSV()" title="Export ke CSV">
                     <i class="fa-solid fa-file-csv text-sm text-[var(--success-dark)]"></i>
@@ -426,7 +423,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
           <!-- TAB 3: LINK -->
           <section class="tab-panel hidden" id="tab-link">
             <div class="mb-7">
-              <p class="text-[var(--muted)] text-sm leading-relaxed max-w-2xl">Bagikan link ke para tamu. Tombol WhatsApp akan langsung menyertakan ucapan dan thumbnail foto1.jpg kamu secara otomatis.</p>
+              <p class="text-[var(--muted)] text-sm leading-relaxed max-w-2xl">Bagikan link ke para tamu. Tombol WhatsApp akan langsung menyertakan ucapan secara otomatis.</p>
             </div>
             
             <div id="eventReminder" class="hidden mb-6 p-4 rounded-xl bg-[#FFF3F3] border border-[var(--danger)] text-[var(--danger)] text-sm flex items-center gap-2">
@@ -463,7 +460,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
   </div>
   
   <script>
-    const INVITE_URL = window.location.origin + window.location.pathname.replace(/admin-[^/]+\.html|admin\.html/, '');
+    const INVITE_URL = "https://hamzanifina3-ops.github.io/undangan_ivent_FunRun1/";
     
     let state = {
       event: { name: '', organizer: '', message: '' },
@@ -486,7 +483,20 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       tabs.forEach(t => document.getElementById('tab-' + t).classList.toggle('hidden', t !== tab));
       document.querySelector('.sidebar').classList.remove('open');
 
-      // Toggle Reminder di Tab Link
+      const breadcrumb = document.getElementById('breadcrumb');
+      const pageTitle = document.getElementById('pageTitle');
+      
+      if (tab === 'event') {
+        breadcrumb.innerText = 'Kelola Event / Detail & Ucapan';
+        pageTitle.innerText = 'Detail Event & Pesan Undangan';
+      } else if (tab === 'tamu') {
+        breadcrumb.innerText = 'Kelola Event / Daftar Tamu';
+        pageTitle.innerText = 'Kelola Daftar Tamu Undangan';
+      } else if (tab === 'link') {
+        breadcrumb.innerText = 'Kelola Event / Link Undangan';
+        pageTitle.innerText = 'Daftar Link Undangan Personal';
+      }
+
       const reminder = document.getElementById('eventReminder');
       if(tab === 'link') {
         if(!state.event.name) reminder.classList.remove('hidden');
@@ -497,7 +507,6 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
     document.querySelectorAll('.nav-item[data-tab]').forEach(i => i.addEventListener('click', () => switchTab(i.dataset.tab)));
     function toggleSidebar() { document.querySelector('.sidebar').classList.toggle('open'); }
     
-    // Character Count Listener
     const msgInput = document.getElementById('invitationMessage');
     msgInput.addEventListener('input', () => {
       document.getElementById('charCount').innerText = msgInput.value.length;
@@ -629,9 +638,11 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       }).join('');
     }
     
+    // Perbaikan fungsi kirim WhatsApp
     function shareWhatsApp(id) {
       const g = state.guests.find(g => g.id === id);
       if(!g) return;
+      
       const link = `${INVITE_URL}?to=${g.code}`;
       let msg = state.event.message || "Kepada Yth: [NAMA_TAMU]\n\nDengan hormat, kami mengundang Anda untuk hadir pada acara [NAMA_EVENT].\n\nDetail acara dapat dilihat melalui link berikut:\n[LINK_UNDANGAN]";
       
@@ -639,8 +650,19 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
                .replace(/\[NAMA_EVENT\]/g, state.event.name || "Event Spesial")
                .replace(/\[LINK_UNDANGAN\]/g, link);
                
-      g.sent = true; saveState(); renderGuests(); renderLinks();
-      window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+      g.sent = true; 
+      saveState(); 
+      renderGuests(); 
+      renderLinks();
+
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+      
+      // Membuka tab baru (lebih aman dari blokir browser)
+      const win = window.open(waUrl, '_blank');
+      if (!win) {
+        // Fallback jika pop-up diblokir
+        window.location.href = waUrl;
+      }
     }
     
     function deleteGuest(id) {
@@ -679,6 +701,7 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
       setTimeout(() => t.classList.remove('show'), 3000);
     }
 
+    // Inisialisasi awal
     loadState();
     if(!state.event.name && !state.guests.length) {
       state.event = { name: 'Gathering & Workshop', organizer: 'Panitia Event', message: 'Kepada Yth: [NAMA_TAMU]\n\nDengan hormat, kami mengundang Anda untuk hadir pada acara [NAMA_EVENT].\n\nDetail acara dan tempat lokasi dapat dilihat melalui link berikut:\n[LINK_UNDANGAN]' };
@@ -689,9 +712,10 @@ Merupakan suatu kehormatan bagi kami atas kehadiran Anda. Terima kasih!"></texta
     document.getElementById('eventName').value = state.event.name || '';
     document.getElementById('eventOrganizer').value = state.event.organizer || '';
     document.getElementById('invitationMessage').value = state.event.message || '';
-    document.getElementById('charCount').innerText = state.event.message ? state.event.message.length : '0';
-    document.getElementById('searchGuest').addEventListener('input', renderGuests);
-    renderGuests(); renderLinks();
+    document.getElementById('charCount').innerText = (state.event.message || '').length;
+
+    renderGuests();
+    renderLinks();
   </script>
 </body>
 </html>
